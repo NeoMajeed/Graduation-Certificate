@@ -3,18 +3,36 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
 const fs = require('fs');
-const { Certificate } = require('crypto');
+const mysql = require("mysql2");
 
 const ipfs = ipfsClient.create({ host: 'localhost', port: '5001', protocol: 'http'});
 const app = express();
 
+//انشاء الاتصال بقاعدة البيانات
+const db = mysql.createConnection({
+    host:   'localhost',
+    user:   'root',
+    password:   '',
+    database:   'project-ut'
+});
+
+//الإتصال بقاعدة البيانات
+db.connect( (error) =>{
+    if(error) {
+        console.log(error)
+    } else {
+        console.log("MYSQL Connected...")
+    }
+})
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 app.use(fileUpload());
 
 app.get('/', (req, res) =>{
     res.render('addStudent');
 });
+
 
 app.post('/upload', (req,res) =>{
     const file = req.files.file;
@@ -34,6 +52,14 @@ app.post('/upload', (req,res) =>{
 
         res.render('upload', {fileName, fileHash});
     })
+});
+
+//التأكد من الوصول الى بيانات الفورم 
+app.post('/addStudent' , (req,res) =>{
+    const body = req.body;
+    
+    console.log(body);
+    res.send("<h1>..تم إظافة الطالب</h1>");
 });
 
 const addFile = async (fileName, filePath) =>{

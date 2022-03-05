@@ -12,28 +12,33 @@
     <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4">
         <h1 class="display-4 py-2 text-truncate">إضافة طالب متخرج</h1>
         <div class="px-2">
-            <form>
+            <form action="/addStudent" method="POST">
                 <div class="form-group">
-                    <label for="inputName">إسم الطالب الكامل</label>
-                    <input type="text" class="form-control" id="inputName"
-                        placeholder="Student Full Name">
+                    <label for="nameAR">إسم الطالب بالعربي</label>
+                    <input type="text" class="form-control" id="nameAR" name="nameAR"
+                        placeholder="Student Arabic Full Name">
+                </div>
+                <div class="form-group">
+                    <label for="nameEN">إسم الطالب باإنجليزي</label>
+                    <input type="text" class="form-control" id="nameEN" name="nameEN"
+                        placeholder="Student English Full Name">
                 </div>
                 <div class="form-group">
                     <label for="NID">رقم الهوية</label>
-                    <input type="number" class="form-control" id="NID"
+                    <input type="number" class="form-control" id="NID" name="NID"
                         placeholder="National ID">
                 </div>
                 <div class="form-group">
                     <label for="degree">التخصص</label>
-                    <input type="text" class="form-control" id="Degree">
+                    <input type="text" class="form-control" id="Degree" name="Degree">
                 </div>
                 <div class="form-group">
                     <label for="branch">الكلية</label>
-                    <input type="text" class="form-control" id="branch">
+                    <input type="text" class="form-control" id="branch" name="branch">
                 </div>
                 <div class="form-group">
                     <label for="GPD">المعدل</label>
-                    <input type="text" class="form-control" id="GPA">
+                    <input type="text" class="form-control" id="GPA" name="GPA">
                 </div>
                 <button type="submit" class="btn btn-primary">إضافة</button>
             </form>
